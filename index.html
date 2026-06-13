@@ -105,7 +105,7 @@
         /* --- МАГИЯ АДАПТИВНОСТИ ДЛЯ ТЕЛЕФОНОВ --- */
         @media (max-width: 768px) {
             body {
-                padding-top: 290px; /* Увеличиваем отступ на смартфонах, так как шапка стала выше */
+                padding-top: 310px; /* Немного увеличили для вместимости нового пункта */
             }
             
             header {
@@ -125,7 +125,7 @@
             }
             
             nav {
-                justify-self: center; /* Меню встает по центру */
+                justify-self: center; /* Menu встает по центру */
                 flex-direction: column; /* Пункты меню выстраиваются друг под дружкой */
                 gap: 8px;
                 margin-top: 5px;
@@ -219,6 +219,41 @@
             color: #ec4899;
         }
 
+        /* Стильный блок Контактов */
+        .contacts-content {
+            background-color: #1e293b;
+            padding: 40px 30px;
+            border-radius: 15px;
+            border: 1px solid #334155;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .contacts-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .contact-item {
+            display: block;
+            padding: 15px;
+            background-color: #0f172a;
+            color: #38bdf8;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 16px;
+            border: 1px solid #334155;
+            transition: all 0.3s ease;
+        }
+        .contact-item:hover {
+            background-color: #38bdf8;
+            color: #0f172a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(56, 189, 248, 0.4);
+        }
+
         /* Всплывающие окна */
         .modal {
             display: none; 
@@ -271,6 +306,17 @@
             margin-top: 20px;
             background: #1e293b;
             border: 1px solid #38bdf8;
+            display: inline-block;
+            padding: 10px 20px;
+            color: #f8fafc;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        footer .btn:hover {
+            background: #38bdf8;
+            color: #0f172a;
         }
     </style>
 </head>
@@ -287,6 +333,7 @@
             <a href="#hero" data-lang-key="nav_home">Главная</a>
             <a href="#about" data-lang-key="nav_about">О нас</a>
             <a href="#services" data-lang-key="nav_features">Возможности</a>
+            <a href="#contacts" data-lang-key="nav_contacts">Контакты</a> <!-- Добавили кнопку Контакты -->
             
             <div class="lang-switcher">
                 <button class="lang-btn active" onclick="changeLanguage('ru')">RU</button>
@@ -299,7 +346,7 @@
     <section id="hero" class="hero">
         <h1 data-lang-key="hero_title">Автоматизация и Асинхронный Код</h1>
         <p data-lang-key="hero_desc">Эффективная разработка современных цифровых решений, скриптов автоматизации процессов и производительных Telegram-ботов.</p>
-        <a href="#services" class="btn" data-lang-key="hero_btn">Изучить возможности</a>
+        <a href="#services" class="btn" style="display: inline-block; padding: 10px 20px; background: #1e293b; border: 1px solid #38bdf8; color: white; text-decoration: none; border-radius: 5px;" data-lang-key="hero_btn">Изучить возможности</a>
     </section>
 
     <section id="about">
@@ -319,6 +366,18 @@
             <div class="card" onclick="openModal('modal2')">
                 <h3 data-lang-key="card2_title">Асинхронность и скорость</h3>
                 <p data-lang-key="card2_desc">Оптимизация программ с использованием асинхронного подхода на Python и JavaScript для мгновенного отклика. Нажмите для подробностей.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- НОВЫЙ БЛОК: КОНТАКТЫ -->
+    <section id="contacts">
+        <h2 data-lang-key="contacts_title">Контакты</h2>
+        <div class="contacts-content">
+            <p data-lang-key="contacts_desc" style="color: #94a3b8; margin-bottom: 20px;">Свяжитесь со мной для обсуждения ваших проектов и задач по автоматизации.</p>
+            <div class="contacts-list">
+                <a href="tel:+4917661566356" class="contact-item">Anruf: +49 176 61566356</a>
+                <a href="mailto:cheburashkinfedir@gmail.com" class="contact-item">Email: cheburashkinfedir@gmail.com</a>
             </div>
         </div>
     </section>
@@ -349,29 +408,32 @@
     <script>
         const translations = {
             ru: {
-                nav_home: "Главная", nav_about: "О нас", nav_features: "Возможности",
+                nav_home: "Главная", nav_about: "О нас", nav_features: "Возможности", nav_contacts: "Контакты",
                 hero_title: "Автоматизация и Асинхронный Код", hero_desc: "Эффективная разработка современных цифровых решений, скриптов автоматизации процессов и производительных Telegram-ботов.", hero_btn: "Изучить возможности",
                 about_title: "О нас", about_text: "Добро пожаловать! Я занимаюсь проектированием и написанием чистого, отказоустойчивого кода для решения прикладных задач. Моя специализация — создание умных скриптов автоматизации, которые берут на себя рутинную работу, и разработка интерактивных Telegram-ботов любой сложности. В работе я делаю упор на современные технологии и архитектурные подходы, обеспечивающие стабильность и высокую скорость выполнения программ.",
                 features_title: "Мои возможности", card1_title: "Разработка кода и ботов", card1_desc: "Проектирование логики приложений, создание скриптов автоматизации и удобных Telegram-интерфейсов. Нажмите для подробностей.", card2_title: "Асинхронность и скорость", card2_desc: "Оптимизация программ с использованием асинхронного подхода на Python и JavaScript для мгновенного отклика. Нажмите для подробностей.",
+                contacts_title: "Контакты", contacts_desc: "Свяжитесь со мной для обсуждения ваших проектов и задач по автоматизации.",
                 modal1_title: "Разработка кода и автоматизация", modal1_p1: "Я создаю программные решения, которые оптимизируют ваши задачи. Сюда входит разработка Telegram-ботов со сложной внутренней логикой, интеграция различных API-сервисов и автоматический сбор или обработка данных.", modal1_p2: "Каждый проект снабжается чистой структурой и подробными комментариями, что делает код понятным и легким для дальнейшего масштабирования.",
                 modal2_title: "Асинхронное программирование", modal2_p1: "Использование асинхронности на языках Python (asyncio) и JavaScript позволяет коду выполнять множество операций параллельно. Это критически важно для современных ботов и скриптов.", modal2_p2: "Благодаря этому программы не 'зависают' в ожидании ответа от сервера или базы данных, а продолжают мгновенно обрабатывать новые запросы пользователей.",
                 footer_text: "© 2026 Fedor Cheb. Все права защищены. Разработка и программирование.", footer_btn: "Посетить Fedor Veteran Hub"
             },
             en: {
-                nav_home: "Home", nav_about: "About", nav_features: "Features",
+                nav_home: "Home", nav_about: "About", nav_features: "Features", nav_contacts: "Contacts",
                 hero_title: "Automation & Async Code", hero_desc: "Developing efficient digital solutions, process automation scripts, and high-performance Telegram bots.", hero_btn: "Explore Features",
                 about_title: "About Me", about_text: "Welcome! I specialize in designing and writing clean, fault-tolerant code to solve practical business challenges. My expertise lies in building smart automation scripts that eliminate repetitive tasks and developing interactive Telegram bots of any complexity. In my workflow, I focus on modern technologies and solid architectural patterns that ensure maximum system stability and high execution speed.",
                 features_title: "My Features", card1_title: "Code & Bot Development", card1_desc: "Designing application logic, creating automation scripts, and building user-friendly Telegram interfaces. Click to learn more.", card2_title: "Async & Performance", card2_desc: "Optimizing software using asynchronous approaches in Python and JavaScript for instant response times. Click to learn more.",
+                contacts_title: "Contacts", contacts_desc: "Get in touch to discuss your projects and automation needs.",
                 modal1_title: "Development & Automation", modal1_p1: "I create software solutions tailored to optimize your daily operations. This includes developing custom Telegram bots with complex background logic, integrating various API services, and implementing automated data scraping or processing pipelines.", modal1_p2: "Every single project is built with a clean structure and clear documentation, making the codebase highly maintainable and easy to scale up in the future.",
                 modal2_title: "Asynchronous Programming", modal2_p1: "Leveraging asynchronous power in Python (asyncio) and JavaScript allows the application to handle multiple operations simultaneously. This is highly critical for modern bots and back-end scripts.", modal2_p2: "Thanks to this architectural approach, your programs never stall while waiting for a server or database response; instead, they keep processing incoming user requests instantly.",
                 footer_text: "© 2026 Fedor Cheb. All rights reserved. Engineering & Programming.", footer_btn: "Visit Fedor Veteran Hub"
             },
             de: {
-                nav_home: "Startseite", nav_about: "Über mich", nav_features: "Funktionen",
+                nav_home: "Startseite", nav_about: "Über mich", nav_features: "Funktionen", nav_contacts: "Kontakte",
                 hero_title: "Automatisierung & Asynchroner Code", hero_desc: "Entwicklung moderner digitaler Lösungen, Skripte zur Prozessautomatisierung und leistungsstarker Telegram-Bots.", hero_btn: "Funktionen entdecken",
                 about_title: "Über mich", about_text: "Willkommen! Ich spezialisiere sich auf die Entwicklung von sauberem und fehlertolerantem Code zur Lösung praktischer Aufgaben. Mein Schwerpunkt liegt in der Erstellung smarter Automatisierungsskripte, die wiederkehrende Prozesse eliminieren, sowie in der Entwicklung interaktiver Telegram-Bots jeder Komplexität. Bei meiner Arbeit setze ich auf moderne Technologien und solide Architekturmuster, um maximale Stabilität und schnelle Ausführungszeiten zu gewährleisten.",
                 features_title: "Meine Funktionen", card1_title: "Code- & Bot-Entwicklung", card1_desc: "Konzeption von Anwendungslogik, Erstellung von Automatisierungsskripten und benutzerfreundlichen Telegram-Schnittstellen. Klicken für Details.", card2_title: "Asynchronität & Geschwindigkeit", card2_desc: "Optimierung von Programmen durch asynchrone Ansätze in Python und JavaScript für blitzschnelle Reaktionszeiten. Klicken für Details.",
-                modal1_title: "Entwicklung & Automatisierung", modal1_p1: "Ich erstelle maßgeschneiderte Softwarelösungen, um Ihre täglichen Abläufe zu optimieren. Dazu gehören Telegram-Bots mit komplexer Hintergrundlogik, die Integration von API-Diensten sowie automatisierte Datenverarbeitung.", modal1_p2: "Jedes Projekt wird mit einer klaren Struktur und verständlichen Dokumentation übergeben, sodass der Code zukunftssicher und leicht賽卡拉(skalierbar) bleibt.",
+                contacts_title: "Kontakte", contacts_desc: "Kontaktieren Sie mich, um Ihre Projekte und Automatisierungsanforderungen zu besprechen.",
+                modal1_title: "Entwicklung & Automatisierung", modal1_p1: "Ich erstelle maßgeschneiderte Softwarelösungen, um Ihre täglichen Abläufe zu optimieren. Dazu gehören Telegram-Bots mit komplexer Hintergrundlogik, die Integration von API-Diensten sowie automatisierte Datenverarbeitung.", modal1_p2: "Jedes Projekt wird mit einer klaren Struktur und verständlichen Dokumentation übergeben, sodass der Code zukunftssicher und leicht skalierbar bleibt.",
                 modal2_title: "Asynchrone Programmierung", modal2_p1: "Die Nutzung asynchroner Programmierung in Python (asyncio) und JavaScript ermöglicht es der Anwendung, viele Operationen parallel auszuführen. Dies ist entscheidend für moderne Bots.", modal2_p2: "Dadurch blockieren Programme nicht beim Warten auf Server- oder Datenbankantworten, sondern verarbeiten neue Benutzeranfragen sofort weiter.",
                 footer_text: "© 2026 Fedor Cheb. Alle Rechte vorbehalten. Engineering & Programmierung.", footer_btn: "Fedor Veteran Hub besuchen"
             }
@@ -397,6 +459,4 @@
         window.onclick = function(event) { if (event.target.classList.contains('modal')) { event.target.style.display = 'none'; } }
     </script>
 </body>
-</html>
-
 </html>
