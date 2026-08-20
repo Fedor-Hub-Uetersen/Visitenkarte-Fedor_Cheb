@@ -400,11 +400,37 @@
         </div>
     </div>
 
-    <footer>
-        <p data-lang-key="footer_text">&copy; 2026 Fedor Cheb. Все права защищены. Разработка и программирование.</p>
-        <a href="https://veteran-Hub.chebur.shop/" target="_blank" class="btn" data-lang-key="footer_btn">Посетить Fedor Veteran Hub</a>
-    </footer>
+    <!-- ЯРКАЯ АКЦЕНТНАЯ СТРОКА С ПОДСВЕТКОЙ ПЕРЕД ПОДВАЛОМ -->
+    <div class="footer-highlight-bar"></div>
 
+    <footer>
+        <p id="footer-text">&copy; 2026 . Все права защищены.</p>
+
+        <!-- Ссылка на Impressum на том же домене -->
+        <p style="margin-top: 10px;">
+            <a href="impressum.html" style="color: var(--primary); text-decoration: underline; font-size: 0.85rem; font-weight: 600;">Impressum / Правовая информация</a>
+        </p>
+
+        <!-- Блок счётчика посетителей -->
+        <div style="text-align: center; margin-top: 15px; font-family: sans-serif; font-size: 14px; color: #666;">
+            <span style="display: inline-flex; align-items: center; gap: 8px; background: rgba(0, 0, 0, 0.05); padding: 8px 16px; border-radius: 20px;">
+                👥 Посетителей: <strong id="site-visitor-count" style="color: #e63946; font-size: 16px;">1</strong>
+            </span>
+        </div>
+
+        <script>
+            (function() {
+                try {
+                    let count = localStorage.getItem('chebur_site_visits') || 100;
+                    count = parseInt(count) + 1;
+                    localStorage.setItem('chebur_site_visits', count);
+                    document.getElementById('site-visitor-count').innerText = count;
+                } catch (e) {
+                    console.log(e);
+                }
+            })();
+        </script>
+    </footer>
     <script>
         const translations = {
             ru: {
